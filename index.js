@@ -19,9 +19,15 @@ io.on('connection', (socket)=>{
 
 	socket.on('message', (msg)=>{
 		console.log('Received message from the client : ' + msg);
+
+		//io.emit('message',"A user joined")
+		io.emit('message',{
+			author : socket.id,
+			content: msg,
+		});
 	})
 
-	io.emit('message',"A user joined")
+
 })
 
 server.listen(8080, ()=>{
